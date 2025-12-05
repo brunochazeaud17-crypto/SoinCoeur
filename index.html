@@ -189,24 +189,29 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 500px;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        /* Image de secours si problème de chargement */
+        .image-fallback {
+            width: 100%;
             height: 350px;
             background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-medium) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-light);
-        }
-        
-        .image-placeholder {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .image-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-            opacity: 0.7;
+            font-style: italic;
         }
         
         /* Section services */
@@ -354,12 +359,17 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-            height: 350px;
-            background: linear-gradient(135deg, var(--secondary-medium) 0%, var(--accent-color) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
         }
         
         /* Section formulaire */
@@ -634,6 +644,24 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Optimisation du chargement des images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Style pour images manquantes */
+        .image-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body>
@@ -671,10 +699,7 @@
                 <a href="#contact" class="cta-button">Réservez votre soin dès maintenant</a>
             </div>
             <div class="hero-image fade-in">
-                <div class="image-placeholder">
-                    <i class="fas fa-user-circle"></i>
-                    <p>Image: Personne en méditation avec aura énergétique</p>
-                </div>
+                <img src="images/meditation-aura.png" alt="Personne en méditation avec aura énergétique" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\'image-fallback\'><div><i class=\'fas fa-user-circle fa-3x\'></i><p>Image de méditation énergétique</p></div></div>';">
             </div>
         </div>
     </section>
@@ -749,10 +774,7 @@
                     <p>Notre approche holistique considère l'être dans sa globalité, travaillant sur les plans physique, énergétique et spirituel pour un résultat profond et durable.</p>
                 </div>
                 <div class="about-image fade-in">
-                    <div class="image-placeholder">
-                        <i class="fas fa-hands"></i>
-                        <p>Image: Transfert d'énergie vitale par les mains</p>
-                    </div>
+                    <img src="images/transfert-energie.png" alt="Transfert d'énergie vitale par les mains" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\'image-fallback\'><div><i class=\'fas fa-hands fa-3x\'></i><p>Transfert d\'énergie vitale</p></div></div>';">
                 </div>
             </div>
         </div>
@@ -922,6 +944,17 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                }
+            });
+        });
+        
+        // Gestion des images manquantes
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                // Vérifier si l'image est cassée
+                if (!img.complete || img.naturalWidth === 0) {
+                    img.dispatchEvent(new Event('error'));
                 }
             });
         });
