@@ -18,6 +18,7 @@
             --text-light: #6b6b8a;
             --white: #ffffff;
             --shadow: rgba(0, 0, 0, 0.05);
+            --border-radius: 12px;
         }
         
         /* Reset et styles de base */
@@ -27,11 +28,16 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--primary-light);
+            overflow-x: hidden;
         }
         
         .container {
@@ -48,13 +54,13 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            padding: 15px 0;
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
         
         .logo {
@@ -78,6 +84,16 @@
             color: var(--accent-color);
         }
         
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+        
         nav ul {
             display: flex;
             list-style: none;
@@ -89,15 +105,27 @@
             color: var(--text-dark);
             font-weight: 500;
             transition: color 0.3s;
+            position: relative;
         }
         
-        nav a:hover {
-            color: var(--primary-dark);
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
         }
         
         /* Section héros */
         .hero {
-            padding: 100px 0 80px;
+            padding: 80px 0 60px;
             background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-light) 100%);
             position: relative;
             overflow: hidden;
@@ -115,14 +143,14 @@
         }
         
         .hero h2 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             color: var(--text-dark);
             line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
             color: var(--text-light);
         }
@@ -143,46 +171,45 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
+            border: 2px solid var(--accent-color);
         }
         
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 154, 139, 0.4);
+            background-color: transparent;
+            color: var(--accent-color);
         }
         
         .hero-image {
             flex: 1;
-            text-align: center;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
         }
         
-        .placeholder-img {
+        .hero-image img {
             width: 100%;
-            height: 350px;
-            background-color: var(--primary-medium);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
+            height: auto;
+            display: block;
         }
         
         /* Section services */
         .services {
-            padding: 100px 0;
+            padding: 80px 0;
             background-color: var(--white);
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             color: var(--primary-dark);
             margin-bottom: 15px;
         }
@@ -191,6 +218,7 @@
             color: var(--text-light);
             max-width: 700px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
         
         .services-grid {
@@ -201,22 +229,27 @@
         
         .service-card {
             background-color: var(--primary-light);
-            border-radius: 10px;
-            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            padding: 35px 25px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             box-shadow: 0 5px 15px var(--shadow);
+            border: 1px solid rgba(124, 109, 185, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-medium);
         }
         
         .service-icon {
             background-color: var(--secondary-medium);
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -225,31 +258,34 @@
         }
         
         .service-icon i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-dark);
         }
         
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--primary-dark);
         }
         
-        .price {
-            font-size: 2.2rem;
-            color: var(--accent-color);
-            font-weight: 700;
-            margin: 20px 0;
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
         
-        .price span {
-            font-size: 1rem;
-            color: var(--text-light);
+        .service-feature {
+            background-color: rgba(124, 109, 185, 0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            margin-top: auto;
         }
         
         /* Section à propos */
         .about {
-            padding: 100px 0;
+            padding: 80px 0;
             background-color: var(--secondary-light);
         }
         
@@ -264,38 +300,59 @@
         }
         
         .about-text h2 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-bottom: 25px;
             color: var(--primary-dark);
         }
         
-        .benefits {
-            list-style: none;
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             margin: 30px 0;
         }
         
-        .benefits li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
+        .benefit-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 5px 15px var(--shadow);
         }
         
-        .benefits i {
+        .benefit-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefit-card h4 i {
             color: var(--accent-color);
-            margin-right: 10px;
-            margin-top: 5px;
+        }
+        
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
         
         .about-image {
             flex: 1;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
         
         /* Section formulaire */
         .contact {
-            padding: 100px 0;
+            padding: 80px 0;
             background-color: var(--white);
         }
         
@@ -310,7 +367,7 @@
         }
         
         .contact-info h2 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             margin-bottom: 25px;
             color: var(--primary-dark);
         }
@@ -328,18 +385,19 @@
         .contact-details i {
             margin-right: 10px;
             color: var(--primary-dark);
+            width: 20px;
         }
         
         .contact-form {
             flex: 1;
             background-color: var(--primary-light);
-            padding: 40px;
-            border-radius: 10px;
+            padding: 35px;
+            border-radius: var(--border-radius);
             box-shadow: 0 10px 30px var(--shadow);
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .form-group label {
@@ -353,7 +411,7 @@
             width: 100%;
             padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
             transition: border-color 0.3s;
@@ -362,6 +420,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--primary-dark);
+            box-shadow: 0 0 0 3px rgba(124, 109, 185, 0.1);
         }
         
         textarea.form-control {
@@ -373,7 +432,7 @@
         footer {
             background-color: var(--primary-dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 50px 0 25px;
         }
         
         .footer-content {
@@ -409,48 +468,159 @@
         
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
         
-        /* Responsive */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 992px) {
             .hero-content, .about-content, .contact-container {
                 flex-direction: column;
             }
             
             .hero h2 {
-                font-size: 2.3rem;
+                font-size: 2.2rem;
             }
             
-            .section-title h2 {
-                font-size: 2.2rem;
+            .section-title h2, .about-text h2, .contact-info h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-image, .about-image {
+                max-width: 100%;
+                order: -1;
+            }
+            
+            .hero-image {
+                margin-bottom: 30px;
             }
         }
         
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 20px;
+            .menu-toggle {
+                display: block;
             }
             
             nav ul {
-                gap: 20px;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid var(--primary-medium);
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav a::after {
+                display: none;
+            }
+            
+            nav a {
+                padding: 10px 0;
+                display: block;
+            }
+            
+            .header-container {
+                padding: 0;
+            }
+            
+            .hero {
+                padding: 60px 0 40px;
             }
             
             .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title h2 {
                 font-size: 1.8rem;
             }
             
-            .contact-form {
-                padding: 30px 25px;
+            .hero p {
+                font-size: 1rem;
             }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-title h2, .about-text h2, .contact-info h2 {
+                font-size: 1.7rem;
+            }
+            
+            .services, .about, .contact {
+                padding: 60px 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 25px 20px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+            
+            .footer-content {
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title h2, .about-text h2, .contact-info h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+            }
+            
+            .benefits-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 20px 15px;
+            }
+        }
+        
+        /* Animation pour le défilement */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -464,11 +634,16 @@
                 </div>
                 <h1>Énergie<span>Ka</span></h1>
             </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <nav>
-                <ul>
+                <ul id="navMenu">
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#apropos">Le Ka</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -483,10 +658,8 @@
                 <p>Selon la tradition ancestrale, le Ka est l'essence vitale qui anime chaque être. Nos soins vibratoires holistiques permettent de vivifier votre Ka, éliminant les influences négatives qui entravent votre épanouissement.</p>
                 <a href="#contact" class="cta-button">Réservez votre soin dès maintenant</a>
             </div>
-            <div class="hero-image">
-                <div class="placeholder-img">
-                    <p>[Image: Personne en posture de méditation dans un environnement naturel paisible, avec une aura lumineuse douce]</p>
-                </div>
+            <div class="hero-image fade-in">
+                <img src="images/meditation-aura.jpg" alt="Personne en méditation avec aura énergétique">
             </div>
         </div>
     </section>
@@ -499,32 +672,29 @@
                 <p>Nos séances de vivification du Ka utilisent des techniques vibratoires éprouvées pour nettoyer votre système énergétique et restaurer votre vitalité naturelle.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-hand-sparkles"></i>
                     </div>
                     <h3>Soin Complet du Ka</h3>
                     <p>Séance intensive de vivification de votre énergie vitale, éliminant toutes les influences négatives présentes dans votre système.</p>
-                    <div class="price">20€ <span>/ séance d'1h</span></div>
-                    <p>Libération complète des blocages énergétiques</p>
+                    <div class="service-feature">Libération complète des blocages énergétiques</div>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Protection Énergétique</h3>
                     <p>Renforcez votre bouclier énergétique pour prévenir les influences négatives futures et maintenir la pureté de votre Ka.</p>
-                    <div class="price">20€ <span>/ séance d'1h</span></div>
-                    <p>Techniques de protection et d'ancrage</p>
+                    <div class="service-feature">Techniques de protection et d'ancrage</div>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">
                         <i class="fas fa-broom"></i>
                     </div>
                     <h3>Nettoyage Vibratoire</h3>
                     <p>Élimination spécifique des toxines énergétiques, effets négatifs des vaccins et entités négatives par résonance vibratoire.</p>
-                    <div class="price">20€ <span>/ séance d'1h</span></div>
-                    <p>Purification ciblée de votre champ énergétique</p>
+                    <div class="service-feature">Purification ciblée de votre champ énergétique</div>
                 </div>
             </div>
         </div>
@@ -542,20 +712,29 @@
                     <h2>Libérez-vous des influences qui entravent votre épanouissement</h2>
                     <p>La vivification du Ka est un processus ancestral de régénération énergétique qui agit directement sur votre essence vitale. En réactivant votre Ka, vous permettez à votre corps énergétique de se libérer des influences négatives accumulées.</p>
                     
-                    <ul class="benefits">
-                        <li><i class="fas fa-check-circle"></i> <strong>Preuve sociale:</strong> Des centaines de clients ont déjà retrouvé leur vitalité grâce à nos soins</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Réciprocité:</strong> Offrez-vous ce soin transformateur - vous méritez ce bien-être</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Engagement et cohérence:</strong> Commencez votre chemin vers l'équilibre énergétique dès aujourd'hui</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Autorité:</strong> Techniques basées sur les principes ancestraux de l'énergie Ka</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Rareté:</strong> Places limitées pour un accompagnement personnalisé de qualité</li>
-                    </ul>
+                    <div class="benefits-container">
+                        <div class="benefit-card fade-in">
+                            <h4><i class="fas fa-gift"></i> Réciprocité</h4>
+                            <p>Offrez-vous ce soin transformateur - vous méritez ce bien-être. C'est un investissement dans votre santé énergétique.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <h4><i class="fas fa-road"></i> Engagement et cohérence</h4>
+                            <p>Commencez votre chemin vers l'équilibre énergétique dès aujourd'hui. Chaque séance vous rapproche de votre vitalité optimale.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <h4><i class="fas fa-graduation-cap"></i> Autorité</h4>
+                            <p>Techniques basées sur les principes ancestraux de l'énergie Ka, transmises et adaptées pour notre époque.</p>
+                        </div>
+                        <div class="benefit-card fade-in">
+                            <h4><i class="fas fa-crown"></i> Rareté</h4>
+                            <p>Accompagnement personnalisé de qualité avec disponibilités limitées pour assurer une attention totale à chaque client.</p>
+                        </div>
+                    </div>
                     
                     <p>Notre approche holistique considère l'être dans sa globalité, travaillant sur les plans physique, énergétique et spirituel pour un résultat profond et durable.</p>
                 </div>
-                <div class="about-image">
-                    <div class="placeholder-img">
-                        <p>[Image: Main diffusant une énergie lumineuse vers une personne, symbolisant le transfert d'énergie vitale]</p>
-                    </div>
+                <div class="about-image fade-in">
+                    <img src="images/transfert-energie.jpg" alt="Transfert d'énergie vitale par les mains">
                 </div>
             </div>
         </div>
@@ -576,12 +755,12 @@
                     <div class="contact-details">
                         <p><i class="fas fa-envelope"></i> brunochazeaud17@gmail.com</p>
                         <p><i class="fas fa-clock"></i> Séances d'1h sur rendez-vous uniquement</p>
-                        <p><i class="fas fa-euro-sign"></i> 20€ par séance complète</p>
+                        <p><i class="fas fa-euro-sign"></i> Tarif unique par séance : 20€</p>
                         <p><i class="fas fa-map-marker-alt"></i> Consultations à distance disponibles</p>
                     </div>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form fade-in">
                     <form id="contactForm" action="https://formspree.io/f/mvojqzpr" method="POST">
                         <div class="form-group">
                             <label for="name">Nom complet</label>
@@ -630,8 +809,8 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <p><i class="fas fa-envelope"></i> brunochazeaud17@gmail.com</p>
-                    <p><i class="fas fa-euro-sign"></i> 20€ la séance d'1h</p>
-                    <p>Consultations sur rendez-vous</p>
+                    <p><i class="fas fa-euro-sign"></i> Tarif unique : 20€ la séance</p>
+                    <p><i class="fas fa-calendar-alt"></i> Sur rendez-vous uniquement</p>
                 </div>
             </div>
             
@@ -642,42 +821,90 @@
     </footer>
 
     <script>
-        // Script pour le formulaire
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Formulaire de contact
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Récupération des données du formulaire
             const formData = new FormData(this);
             
-            // Simulation d'envoi (dans un cas réel, utiliserait Formspree ou autre service)
-            // Pour le moment, on affiche un message de confirmation
+            // Affichage d'un message de confirmation
             alert('Merci pour votre message ! Je vous contacterai très prochainement pour convenir d\'un rendez-vous.');
             this.reset();
             
-            // En production, décommentez cette ligne pour utiliser Formspree
-            // fetch(this.action, { method: this.method, body: formData })
-            //   .then(response => {
-            //       if (response.ok) {
-            //           alert('Message envoyé avec succès !');
-            //           this.reset();
-            //       } else {
-            //           alert('Une erreur est survenue. Veuillez réessayer.');
-            //       }
-            //   });
+            // Pour une mise en production avec Formspree, décommentez les lignes ci-dessous
+            /*
+            fetch(this.action, {
+                method: this.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Message envoyé avec succès !');
+                    this.reset();
+                } else {
+                    alert('Une erreur est survenue. Veuillez réessayer.');
+                }
+            }).catch(error => {
+                alert('Une erreur est survenue. Veuillez réessayer.');
+            });
+            */
         });
         
-        // Animation simple au défilement
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Animation au défilement
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Vérifier au chargement et au défilement
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                if (targetId === '#') return;
                 
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
