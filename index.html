@@ -38,7 +38,7 @@
         }
         
         body {
-            font-family: 'Lato', sans-serif; /* Police plus moderne */
+            font-family: 'Lato', sans-serif;
             line-height: 1.7;
             color: var(--text-dark);
             background-color: var(--primary-light);
@@ -47,7 +47,7 @@
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif; /* Police élégante pour les titres */
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
         }
         
@@ -218,8 +218,6 @@
             flex: 1;
             border-radius: var(--border-radius);
             position: relative;
-            /* Pas d'overflow hidden ici pour permettre des effets déco si besoin, 
-               mais on va mettre l'image en border-radius */
         }
         
         .hero-image img {
@@ -230,7 +228,6 @@
             box-shadow: 0 20px 40px rgba(124, 109, 185, 0.2);
             transition: transform 0.5s ease;
             object-fit: cover;
-            /* Hauteur max pour éviter que ça prenne tout l'écran */
             max-height: 550px; 
         }
         
@@ -264,11 +261,9 @@
             gap: 40px;
         }
         
-        /* Nouvelle carte de service plus moderne */
         .service-card {
             background-color: var(--white);
             border-radius: var(--border-radius);
-            /* Suppression du padding global pour que l'image touche les bords */
             padding: 0; 
             text-align: left;
             transition: all 0.4s ease;
@@ -277,7 +272,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Important pour que l'image respecte les bords arrondis */
+            overflow: hidden;
         }
         
         .service-card:hover {
@@ -295,7 +290,7 @@
         .service-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* L'image remplit la zone sans déformation */
+            object-fit: cover;
             transition: transform 0.6s ease;
         }
         
@@ -303,7 +298,6 @@
             transform: scale(1.1);
         }
 
-        /* Contenu textuel de la carte */
         .service-content {
             padding: 30px;
             display: flex;
@@ -320,7 +314,7 @@
             align-items: center;
             justify-content: center;
             position: absolute;
-            top: 190px; /* Positionné à cheval sur l'image et le texte */
+            top: 190px;
             right: 30px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             z-index: 10;
@@ -354,7 +348,7 @@
             text-align: center;
         }
         
-        /* Section à propos */
+        /* Section à propos - MODIFIÉE */
         .about {
             padding: 100px 0;
             background-color: var(--secondary-light);
@@ -362,8 +356,11 @@
         
         .about-content {
             display: flex;
-            align-items: center;
+            /* CHANGEMENT: alignement en haut pour que l'image remonte */
+            align-items: flex-start; 
             gap: 60px;
+            /* CHANGEMENT: ajout de marge pour séparer les cartes en bas */
+            margin-bottom: 50px; 
         }
         
         .about-text {
@@ -376,20 +373,23 @@
             color: var(--primary-dark);
         }
         
+        /* CHANGEMENT: Grille améliorée pour les cartes en dessous */
         .benefits-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 35px 0;
+            /* Force l'affichage sur 3 colonnes si l'espace le permet */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
         }
         
         .benefit-card {
             background-color: var(--white);
             border-radius: 10px;
-            padding: 25px;
+            padding: 30px; /* Un peu plus de padding */
             box-shadow: 0 5px 20px rgba(0,0,0,0.03);
             border-left: 4px solid var(--accent-color);
             transition: transform 0.3s;
+            height: 100%; /* S'assure que toutes les cartes ont la même hauteur */
         }
         
         .benefit-card:hover {
@@ -399,7 +399,7 @@
         .benefit-card h4 {
             color: var(--primary-dark);
             margin-bottom: 12px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -570,10 +570,9 @@
             font-size: 0.9rem;
         }
         
-        /* Fallback simple pour les images si elles ne chargent pas */
         img {
-            background-color: var(--primary-medium); /* Couleur de fond si l'image manque */
-            color: transparent; /* Cache le texte alt moche par défaut */
+            background-color: var(--primary-medium);
+            color: transparent;
         }
 
         /* ===== RESPONSIVE DESIGN ===== */
@@ -586,6 +585,16 @@
                 width: 100%;
                 max-width: 600px;
                 margin: 0 auto;
+            }
+            
+            /* Sur mobile, on remet l'image en dessous du texte, mais au dessus des cartes */
+            .about-content {
+                flex-direction: column;
+            }
+            
+            /* On s'assure que l'image apparait après le texte sur mobile */
+            .about-image {
+                order: 1;
             }
             
             .hero-content {
@@ -706,7 +715,6 @@
                 <a href="#contact" class="cta-button">Réservez votre soin</a>
             </div>
             <div class="hero-image fade-in">
-                <!-- Image nettoyée -->
                 <img src="meditation-aura.png" alt="Méditation énergétique">
             </div>
         </div>
@@ -722,11 +730,9 @@
             <div class="services-grid">
                 <!-- Service 1 -->
                 <div class="service-card fade-in">
-                    <!-- Image placée en haut, prenant toute la largeur -->
                     <div class="service-image-container">
                         <img src="soin-complet.png" alt="Soin complet du Ka">
                     </div>
-                    <!-- Icône flottante entre l'image et le texte -->
                     <div class="service-icon-float">
                         <i class="fas fa-hand-sparkles"></i>
                     </div>
@@ -773,38 +779,42 @@
         </div>
     </section>
 
-    <!-- Section à propos -->
+    <!-- Section à propos (MODIFIÉE) -->
     <section class="about" id="apropos">
         <div class="container">
             <div class="section-title">
                 <h2>La Vivification du Ka</h2>
                 <p>Comprendre le processus de régénération de votre énergie vitale</p>
             </div>
+            
+            <!-- Bloc Texte et Image côte à côte -->
             <div class="about-content">
                 <div class="about-text fade-in">
                     <h2>Libérez-vous des influences qui entravent votre épanouissement</h2>
                     <p>La vivification du Ka est un processus ancestral de régénération énergétique qui agit directement sur votre essence vitale. En réactivant votre Ka, vous permettez à votre corps énergétique de se libérer des influences négatives accumulées.</p>
-                    
-                    <div class="benefits-container">
-                        <div class="benefit-card">
-                            <h4><i class="fas fa-gift"></i> Réciprocité</h4>
-                            <p>Offrez-vous ce soin transformateur - un investissement dans votre santé énergétique.</p>
-                        </div>
-                        <div class="benefit-card">
-                            <h4><i class="fas fa-road"></i> Engagement</h4>
-                            <p>Commencez votre chemin vers l'équilibre énergétique dès aujourd'hui.</p>
-                        </div>
-                        <div class="benefit-card">
-                            <h4><i class="fas fa-crown"></i> Qualité</h4>
-                            <p>Accompagnement personnalisé et attention totale à chaque client.</p>
-                        </div>
-                    </div>
+                    <p>Notre approche holistique considère l'être dans sa globalité, travaillant sur les plans physique, énergétique et spirituel pour un résultat profond et durable.</p>
                 </div>
                 <div class="about-image fade-in">
-                    <!-- Image propre -->
                     <img src="transfert-energie.png" alt="Transfert d'énergie vitale">
                 </div>
             </div>
+
+            <!-- Bloc Cartes en dessous, pleine largeur -->
+            <div class="benefits-container">
+                <div class="benefit-card fade-in">
+                    <h4><i class="fas fa-gift"></i> Réciprocité</h4>
+                    <p>Offrez-vous ce soin transformateur - un investissement dans votre santé énergétique.</p>
+                </div>
+                <div class="benefit-card fade-in" style="transition-delay: 0.1s;">
+                    <h4><i class="fas fa-road"></i> Engagement</h4>
+                    <p>Commencez votre chemin vers l'équilibre énergétique dès aujourd'hui.</p>
+                </div>
+                <div class="benefit-card fade-in" style="transition-delay: 0.2s;">
+                    <h4><i class="fas fa-crown"></i> Qualité</h4>
+                    <p>Accompagnement personnalisé et attention totale à chaque client.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
