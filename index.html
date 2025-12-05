@@ -189,12 +189,24 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 500px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-medium) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
         }
         
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .image-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            opacity: 0.7;
         }
         
         /* Section services */
@@ -342,12 +354,12 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary-medium) 0%, var(--accent-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
         }
         
         /* Section formulaire */
@@ -659,7 +671,10 @@
                 <a href="#contact" class="cta-button">Réservez votre soin dès maintenant</a>
             </div>
             <div class="hero-image fade-in">
-                <img src="images/meditation-aura.jpg" alt="Personne en méditation avec aura énergétique">
+                <div class="image-placeholder">
+                    <i class="fas fa-user-circle"></i>
+                    <p>Image: Personne en méditation avec aura énergétique</p>
+                </div>
             </div>
         </div>
     </section>
@@ -734,7 +749,10 @@
                     <p>Notre approche holistique considère l'être dans sa globalité, travaillant sur les plans physique, énergétique et spirituel pour un résultat profond et durable.</p>
                 </div>
                 <div class="about-image fade-in">
-                    <img src="images/transfert-energie.jpg" alt="Transfert d'énergie vitale par les mains">
+                    <div class="image-placeholder">
+                        <i class="fas fa-hands"></i>
+                        <p>Image: Transfert d'énergie vitale par les mains</p>
+                    </div>
                 </div>
             </div>
         </div>
