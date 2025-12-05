@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Énergie Vitale Ka - Soins Holistiques Vibratoires</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de couleurs douces */
+        :root {
+            --primary-light: #f9f7fe;
+            --primary-medium: #e6e1f7;
+            --primary-dark: #7c6db9;
+            --secondary-light: #e0f7f4;
+            --secondary-medium: #a5e6dd;
+            --accent-color: #ff9a8b;
+            --text-dark: #4a4a6a;
+            --text-light: #6b6b8a;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--primary-light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* En-tête et navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Section héros */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+        
+        .highlight {
+            background-color: rgba(255, 154, 139, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--text-dark);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 154, 139, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 154, 139, 0.4);
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .placeholder-img {
+            width: 100%;
+            height: 350px;
+            background-color: var(--primary-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+        
+        /* Section services */
+        .services {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .service-icon {
+            background-color: var(--secondary-medium);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .service-icon i {
+            font-size: 2rem;
+            color: var(--primary-dark);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        .price {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        
+        /* Section à propos */
+        .about {
+            padding: 100px 0;
+            background-color: var(--secondary-light);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+        }
+        
+        .benefits {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .benefits li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefits i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Section formulaire */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+        }
+        
+        .contact-details {
+            margin-top: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 10px;
+            color: var(--primary-dark);
+        }
+        
+        .contact-form {
+            flex: 1;
+            background-color: var(--primary-light);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content, .about-content, .contact-container {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-form {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête avec navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <h1>Énergie<span>Ka</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section héros -->
+    <section class="hero" id="accueil">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Réactivez votre énergie vitale Ka pour <span class="highlight">retrouver équilibre et bien-être</span></h2>
+                <p>Selon la tradition ancestrale, le Ka est l'essence vitale qui anime chaque être. Nos soins vibratoires holistiques permettent de vivifier votre Ka, éliminant les influences négatives qui entravent votre épanouissement.</p>
+                <a href="#contact" class="cta-button">Réservez votre soin dès maintenant</a>
+            </div>
+            <div class="hero-image">
+                <div class="placeholder-img">
+                    <p>[Image: Personne en posture de méditation dans un environnement naturel paisible, avec une aura lumineuse douce]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Soins Énergétiques Holistiques</h2>
+                <p>Nos séances de vivification du Ka utilisent des techniques vibratoires éprouvées pour nettoyer votre système énergétique et restaurer votre vitalité naturelle.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <h3>Soin Complet du Ka</h3>
+                    <p>Séance intensive de vivification de votre énergie vitale, éliminant toutes les influences négatives présentes dans votre système.</p>
+                    <div class="price">20€ <span>/ séance d'1h</span></div>
+                    <p>Libération complète des blocages énergétiques</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Protection Énergétique</h3>
+                    <p>Renforcez votre bouclier énergétique pour prévenir les influences négatives futures et maintenir la pureté de votre Ka.</p>
+                    <div class="price">20€ <span>/ séance d'1h</span></div>
+                    <p>Techniques de protection et d'ancrage</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <h3>Nettoyage Vibratoire</h3>
+                    <p>Élimination spécifique des toxines énergétiques, effets négatifs des vaccins et entités négatives par résonance vibratoire.</p>
+                    <div class="price">20€ <span>/ séance d'1h</span></div>
+                    <p>Purification ciblée de votre champ énergétique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section à propos -->
+    <section class="about" id="apropos">
+        <div class="container">
+            <div class="section-title">
+                <h2>La Vivification du Ka</h2>
+                <p>Comprendre le processus de régénération de votre énergie vitale</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Libérez-vous des influences qui entravent votre épanouissement</h2>
+                    <p>La vivification du Ka est un processus ancestral de régénération énergétique qui agit directement sur votre essence vitale. En réactivant votre Ka, vous permettez à votre corps énergétique de se libérer des influences négatives accumulées.</p>
+                    
+                    <ul class="benefits">
+                        <li><i class="fas fa-check-circle"></i> <strong>Preuve sociale:</strong> Des centaines de clients ont déjà retrouvé leur vitalité grâce à nos soins</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Réciprocité:</strong> Offrez-vous ce soin transformateur - vous méritez ce bien-être</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Engagement et cohérence:</strong> Commencez votre chemin vers l'équilibre énergétique dès aujourd'hui</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Autorité:</strong> Techniques basées sur les principes ancestraux de l'énergie Ka</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Rareté:</strong> Places limitées pour un accompagnement personnalisé de qualité</li>
+                    </ul>
+                    
+                    <p>Notre approche holistique considère l'être dans sa globalité, travaillant sur les plans physique, énergétique et spirituel pour un résultat profond et durable.</p>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-img">
+                        <p>[Image: Main diffusant une énergie lumineuse vers une personne, symbolisant le transfert d'énergie vitale]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prenez Rendez-vous</h2>
+                <p>Contactez-moi pour réserver votre séance de vivification du Ka ou pour toute question</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Transformez votre énergie vitale dès aujourd'hui</h2>
+                    <p>Chaque séance est personnalisée selon vos besoins spécifiques. La vivification de votre Ka vous apportera un bien-être profond et durable.</p>
+                    
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> brunochazeaud17@gmail.com</p>
+                        <p><i class="fas fa-clock"></i> Séances d'1h sur rendez-vous uniquement</p>
+                        <p><i class="fas fa-euro-sign"></i> 20€ par séance complète</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Consultations à distance disponibles</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/mvojqzpr" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Adresse email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone (optionnel)</label>
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" name="message" class="form-control" required placeholder="Décrivez brièvement ce qui vous amène et vos disponibilités..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%; text-align: center;">Envoyer ma demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ÉnergieKa</h3>
+                    <p>Soins vibratoires holistiques spécialisés dans la vivification du Ka, l'énergie vitale essentielle à votre bien-être.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <a href="#accueil">Accueil</a>
+                    <a href="#services">Services</a>
+                    <a href="#apropos">À propos du Ka</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> brunochazeaud17@gmail.com</p>
+                    <p><i class="fas fa-euro-sign"></i> 20€ la séance d'1h</p>
+                    <p>Consultations sur rendez-vous</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ÉnergieKa - Soins Énergétiques Holistiques. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script pour le formulaire
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des données du formulaire
+            const formData = new FormData(this);
+            
+            // Simulation d'envoi (dans un cas réel, utiliserait Formspree ou autre service)
+            // Pour le moment, on affiche un message de confirmation
+            alert('Merci pour votre message ! Je vous contacterai très prochainement pour convenir d\'un rendez-vous.');
+            this.reset();
+            
+            // En production, décommentez cette ligne pour utiliser Formspree
+            // fetch(this.action, { method: this.method, body: formData })
+            //   .then(response => {
+            //       if (response.ok) {
+            //           alert('Message envoyé avec succès !');
+            //           this.reset();
+            //       } else {
+            //           alert('Une erreur est survenue. Veuillez réessayer.');
+            //       }
+            //   });
+        });
+        
+        // Animation simple au défilement
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
