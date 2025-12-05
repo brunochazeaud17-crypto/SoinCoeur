@@ -189,11 +189,6 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-medium) 100%);
-            min-height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .hero-image img {
@@ -209,9 +204,15 @@
         
         /* Image de secours */
         .image-fallback {
-            text-align: center;
-            padding: 20px;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--primary-medium) 0%, var(--secondary-medium) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             color: var(--text-light);
+            text-align: center;
         }
         
         .image-fallback i {
@@ -366,11 +367,6 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-            background: linear-gradient(135deg, var(--secondary-medium) 0%, var(--accent-color) 100%);
-            min-height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .about-image img {
@@ -693,8 +689,9 @@
                 <a href="#contact" class="cta-button">Réservez votre soin dès maintenant</a>
             </div>
             <div class="hero-image fade-in">
-                <img src="./images/meditation-aura.png" alt="Personne en méditation avec aura énergétique" 
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"image-fallback\"><i class=\"fas fa-user-circle\"></i><p>Méditation énergétique</p></div>';">
+                <!-- ICI : Image au même niveau que index.html -->
+                <img src="meditation-aura.png" alt="Personne en méditation avec aura énergétique" 
+                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\"image-fallback\"><i class=\"fas fa-user-circle\"></i><p>Image de méditation énergétique</p></div>';">
             </div>
         </div>
     </section>
@@ -769,8 +766,9 @@
                     <p>Notre approche holistique considère l'être dans sa globalité, travaillant sur les plans physique, énergétique et spirituel pour un résultat profond et durable.</p>
                 </div>
                 <div class="about-image fade-in">
-                    <img src="./images/transfert-energie.png" alt="Transfert d'énergie vitale par les mains" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"image-fallback\"><i class=\"fas fa-hands\"></i><p>Transfert d\'énergie vitale</p></div>';">
+                    <!-- ICI : Image au même niveau que index.html -->
+                    <img src="transfert-energie.png" alt="Transfert d'énergie vitale par les mains" 
+                         onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div class=\"image-fallback\"><i class=\"fas fa-hands\"></i><p>Transfert d\'énergie vitale</p></div>';">
                 </div>
             </div>
         </div>
@@ -924,32 +922,25 @@
             });
         });
         
-        // Vérifier le chargement des images
+        // Vérifier les images au chargement
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Vérification des images...');
+            console.log('Vérification des chemins d\'images...');
             
-            // Tester le chemin des images
-            const testImagePaths = [
-                './images/meditation-aura.png',
-                './images/transfert-energie.png'
+            // Tester les chemins d'images
+            const imagesToTest = [
+                {id: 'hero-image', src: 'meditation-aura.png'},
+                {id: 'about-image', src: 'transfert-energie.png'}
             ];
             
-            testImagePaths.forEach(path => {
+            imagesToTest.forEach(imgInfo => {
                 const img = new Image();
                 img.onload = function() {
-                    console.log(`✓ Image chargée: ${path}`);
+                    console.log(`✓ Image chargée: ${imgInfo.src}`);
                 };
                 img.onerror = function() {
-                    console.error(`✗ Image non trouvée: ${path}`);
-                    // Afficher un message d'erreur discret
-                    const errorElement = document.createElement('div');
-                    errorElement.style.cssText = 'position:fixed; bottom:10px; right:10px; background:#ff6b6b; color:white; padding:10px; border-radius:5px; z-index:9999; display:none;';
-                    errorElement.innerHTML = `Image manquante: ${path.split('/').pop()}`;
-                    document.body.appendChild(errorElement);
-                    errorElement.style.display = 'block';
-                    setTimeout(() => errorElement.style.display = 'none', 5000);
+                    console.error(`✗ Image non trouvée: ${imgInfo.src}`);
                 };
-                img.src = path;
+                img.src = imgInfo.src;
             });
         });
     </script>
